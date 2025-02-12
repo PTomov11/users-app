@@ -1,5 +1,6 @@
 package com.ptomov.users_app.users.service;
 
+import com.ptomov.users_app.exceptions.UserNotFoundException;
 import com.ptomov.users_app.users.UserDO;
 import com.ptomov.users_app.users.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDO getUserById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 }
